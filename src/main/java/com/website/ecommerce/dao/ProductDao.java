@@ -2,14 +2,15 @@ package com.website.ecommerce.dao;
 
 import java.util.List;
 import com.website.ecommerce.entity.ProductDetailsPojo;
+import com.website.ecommerce.request.ProductRequestPojo;
 
 public interface ProductDao {
 
-	public void addproduct(ProductDetailsPojo productDetailsPojo);
+	public void addproduct( ProductRequestPojo productRequestPojo);
 
-	public void updateProduct(ProductDetailsPojo productDetailsPojo);
+	public void updateProduct(ProductRequestPojo productRequestPojo);
 
-	public void deleteProduct(ProductDetailsPojo productDetailsPojo);
+	public void deleteProduct(ProductRequestPojo productRequestPojo);
 
 	public List<ProductDetailsPojo> getProductdetails();
 

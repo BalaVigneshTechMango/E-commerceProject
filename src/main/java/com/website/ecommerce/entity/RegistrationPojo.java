@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.website.ecommerce.request.RegisterRequestPojo;
+
 @Entity
 @Table(name = "registrationPojo")
 public class RegistrationPojo  {
@@ -35,6 +37,8 @@ public class RegistrationPojo  {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "registrationPojo",targetEntity = PurchaseOrderPojo.class)
 	private Set<PurchaseOrderPojo> shoppingCarts = new HashSet<>();
+
+
 
 	public int getUserId() {
 		return userId;

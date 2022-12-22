@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.website.ecommerce.dao.ProductDao;
 import com.website.ecommerce.entity.ProductDetailsPojo;
 import com.website.ecommerce.repository.ProductRepository;
+import com.website.ecommerce.request.ProductRequestPojo;
 
 @Service
 public class ProductDaoImpl implements ProductDao{
@@ -15,17 +16,27 @@ public class ProductDaoImpl implements ProductDao{
 	private ProductRepository productRepository;
 	
 	@Override
-	public void addproduct(ProductDetailsPojo productDetailsPojo) {
+	public void addproduct(ProductRequestPojo productRequestPojo) {
+		ProductDetailsPojo productDetailsPojo=new ProductDetailsPojo();
+		productDetailsPojo.setProductName(productRequestPojo.getProductName());
+		productDetailsPojo.setProductPrice(productRequestPojo.getProductPrice());
+		productDetailsPojo.setQuantity(productRequestPojo.getQuantity());
 		productRepository.save(productDetailsPojo);
 	}
 	
-	public void updateProduct(ProductDetailsPojo productDetailsPojo) {
-		productDetailsPojo.getProductId();
+	public void updateProduct( ProductRequestPojo productRequestPojo) {
+		ProductDetailsPojo productDetailsPojo=new ProductDetailsPojo();
+		ProductDetailsPojo updateProduct=productRepository.findById(productRequestPojo.getProductId());
+		updateProduct.setProductName(productRequestPojo.getProductName());
+		updateProduct.setQuantity(productRequestPojo.getQuantity());
+		updateProduct.setProductPrice(productDetailsPojo.getProductPrice());
 		productRepository.save(productDetailsPojo);
 		
 	}
 
-	public void deleteProduct(ProductDetailsPojo productDetailsPojo) {
+	public void deleteProduct(ProductRequestPojo productRequestPojo) {
+		
+		ProductDetailsPojo productDetailsPojo=productRepository.findById(productRequestPojo.getProductId());
 		productRepository.delete(productDetailsPojo);
 	}
 

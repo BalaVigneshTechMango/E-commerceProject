@@ -2,17 +2,14 @@ package com.website.ecommerce.controllers;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.website.ecommerce.dto.ShoppingCartDTO;
-import com.website.ecommerce.entity.ProductDetailsPojo;
 import com.website.ecommerce.entity.PurchaseOrderPojo;
-import com.website.ecommerce.entity.RegistrationPojo;
+import com.website.ecommerce.request.PurchaseRequestPojo;
 import com.website.ecommerce.responce.ResponcePojo;
 import com.website.ecommerce.service.PurchaseService;
 
@@ -36,8 +33,8 @@ public class PurchaseController {
 	}
 
 	@PostMapping("/put")
-	public ResponcePojo updateProductItem(@RequestBody ShoppingCartDTO shoppingCartDTO,PurchaseOrderPojo purchaseOrderPojo,ResponcePojo responcePojo) {
-		 purchaseService.updateProduct(shoppingCartDTO,purchaseOrderPojo); 
+	public ResponcePojo updateProductItem(@RequestBody PurchaseRequestPojo purchaseRequestPojo,ResponcePojo responcePojo) {
+		 purchaseService.updateProduct(purchaseRequestPojo); 
 		 return responcePojo;
 	}
 	@PostMapping("/purchasedProducts")
@@ -46,7 +43,7 @@ public class PurchaseController {
 	}
 	
 	@PutMapping("/purchaseProduct")
-	public ResponcePojo purchaseProductUpdate(@RequestBody PurchaseOrderPojo purchaseOrderPojo,ResponcePojo responcePojo ) {
+	public ResponcePojo purchaseProductUpdate(@RequestBody PurchaseRequestPojo purchaseOrderPojo,ResponcePojo responcePojo ) {
 
 		purchaseService.purchaseProductUpdate(purchaseOrderPojo);
 		responcePojo.setIsSuccess(true);

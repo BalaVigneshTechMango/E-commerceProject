@@ -1,4 +1,4 @@
-package com.website.ecommerce.serviceimpl;
+package com.website.ecommerce.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import com.website.ecommerce.dto.ShoppingCartDTO;
 import com.website.ecommerce.entity.ProductDetailsPojo;
 import com.website.ecommerce.entity.PurchaseOrderPojo;
 import com.website.ecommerce.entity.RegistrationPojo;
+import com.website.ecommerce.request.PurchaseRequestPojo;
 import com.website.ecommerce.responce.ResponcePojo;
 import com.website.ecommerce.service.PurchaseService;
 
@@ -29,19 +30,21 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	// Update the Cart quantity
-	public void updateProduct(ShoppingCartDTO shoppingCartDTO,PurchaseOrderPojo purchaseOrderPojo){
+	public void updateProduct(PurchaseRequestPojo purchaseRequestPojo){
 	
-		 purchaseDao.updateProduct(shoppingCartDTO,purchaseOrderPojo);
+		 purchaseDao.updateProduct(purchaseRequestPojo);
 	}
 
-	public ResponcePojo purchaseProductUpdate(PurchaseOrderPojo purchaseOrderPojo) {
+	public void purchaseProductUpdate(PurchaseRequestPojo purchaseRequestPojo){
 	
-		 return purchaseDao.purchaseProductUpdate(purchaseOrderPojo);
+		  purchaseDao.purchaseProductUpdate(purchaseRequestPojo);
 		 
 	}
 
 	public List<PurchaseOrderPojo> findByPurchased() {
 		return purchaseDao.findByPurchased();
 	}
+
+
 
 }

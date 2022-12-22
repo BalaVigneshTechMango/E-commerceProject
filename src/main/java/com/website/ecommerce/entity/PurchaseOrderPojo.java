@@ -31,6 +31,15 @@ public class PurchaseOrderPojo {
 	 @Column(name = "date")
 	 private Date date;
 	 
+	 @ManyToOne(fetch = FetchType.EAGER,targetEntity = RegistrationPojo.class)
+	 @JoinColumn(name = "reg_id")
+	 private RegistrationPojo registrationPojo;
+		
+	 @ManyToOne(fetch = FetchType.LAZY,targetEntity = ProductDetailsPojo.class)
+	 @JoinColumn(name = "pro_id")
+	 private ProductDetailsPojo productDetailsPojo;
+	 
+	 
 	 public RegistrationPojo getRegistrationPojo() {
 		return registrationPojo;
 	}
@@ -47,14 +56,6 @@ public class PurchaseOrderPojo {
 		this.productDetailsPojo = productDetailsPojo;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER,targetEntity = RegistrationPojo.class)
-	 @JoinColumn(name = "reg_id")
-	 private RegistrationPojo registrationPojo;
-		
-	 @ManyToOne(fetch = FetchType.LAZY,targetEntity = ProductDetailsPojo.class)
-	 @JoinColumn(name = "pro_id")
-	 private ProductDetailsPojo productDetailsPojo;
-	 
 
 	public int getPurchaseorderid() {
 		return purchaseorderid;
